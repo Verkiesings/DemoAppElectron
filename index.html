@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Order System</title>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="css/style.css" />
+      <link rel="stylesheet" href="css/material.css" />
+      <script src="js/angular.js"></script>
+      <script src="js/order.js"></script>
+    
+   </head>
+   <body ng-controller="myCtrl">
+      <div class="uptopmenu">
+         <div class="option" id="close">&#x2716;</div>
+         <div class="option" id="maximize">&#9645;</div>
+         <div class="option" id="minimize">&#10134;</div>
+      </div>
+      <div class="dialogCenter">
+         <dialog class="mdl-dialog">
+            <h4 class="mdl-dialog__title"> Place your order here</h4>
+            <hr />
+            <div class="mdl-dialog__content">
+               <form ng-submit="makeOrder()">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                     <input ng-model="meal" class="mdl-textfield__input" type="text" id="mealD sample3">
+                     <label class="mdl-textfield__label" for="sample3">Meal and Description</label>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                     <input ng-model="empname" class="mdl-textfield__input" type="text" id="empN sample3">
+                     <label class="mdl-textfield__label" for="sample3">Employee Name</label>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                     <input ng-model="orderFrom" class="mdl-textfield__input" type="text" id="ordFrm sample3">
+                     <label class="mdl-textfield__label" for="sample3">Order From</label>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                     <input ng-model="price" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="prc sample4">
+                     <label class="mdl-textfield__label" for="sample4">Price</label>
+                     <span class="mdl-textfield__error">Input is not a number!</span>
+                  </div>
+                  <div class="mdl-dialog__actions">
+                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent close">Close</button>
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored done">Order</button>   
+                </div>
+               </form>
+            </div>
+         </dialog>
+      </div>
+      <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+         <div class="mdl-card__title">
+         </div>
+         <div class="mdl-card__supporting-text">
+            Our company offers to buy you lunch every monday....
+         </div>
+         <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="print()">
+            These are the orders
+            </a>
+         </div>
+         <div class="mdl-card__menu">
+            <button id="tt1" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+               <i class="material-icons"  id="show-dialog">add</i>
+               <div class="mdl-tooltip" data-mdl-for="tt1">
+                  Make an order!!
+               </div>
+            </button>
+         </div>
+      </div>
+      <div class="orderTable">
+         <table class="mdl-data-table mdl-js-data-table" style="width: 900px;">
+            <thead>
+               <tr>
+                  <th class="mdl-data-table__cell--non-numeric">Meal (Description)</th>
+                  <th>Date</th>
+                  <th>Employee Name</th>
+                  <th>Order from</th>
+                  <th>Price</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr ng-repeat="x in items">
+                  <td class="mdl-data-table__cell--non-numeric">{{x.meal}}</td>
+                  <td>{{x.Date | date:'yyyy-MM-dd'}}</td>
+                  <td>{{x.empname}}</td>
+                  <td>{{x.orderFrom}}</td>
+                  <td>{{x.price |  currency:"R" }}</td>
+               </tr >
+            </tbody>
+         </table>
+      </div>
+
+      <div class="footer">
+         <div id="button"></div>
+         <div id="container">
+            <div id="cont">
+               <div class="footer_center">
+                  <h3>brought to you by pulseon</h3>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-1.6.4.min.js" integrity="sha256-lR1rrjnrFy9XqIvWhvepIc8GD9IfWWSPDSC2qPmPxaU=" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script>
+         var dialog = document.querySelector('dialog');
+         var showDialogButton = document.querySelector('#show-dialog');
+         if (!dialog.showModal) {
+             dialogPolyfill.registerDialog(dialog);
+         }
+         showDialogButton.addEventListener('click', function() {
+             dialog.showModal();
+         });
+         dialog.querySelector('.close').addEventListener('click', function() {
+             dialog.close();
+         });
+ 
+      </script>
+      
+      <script src="js/material.min.js"></script>
+      <script src="js/script.js"></script>
+   </body>
+</html>
