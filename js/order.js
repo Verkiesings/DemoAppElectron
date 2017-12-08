@@ -10,13 +10,9 @@ $scope.items = [];
         var orderFrom = $scope.orderFrom;
         var price = $scope.price;
         var orderDate = new Date();
-        if ( meal.length == 0 && empname.length  == 0 && orderFrom.length  == 0 && orderDate.length != 0 ) {
-              
-                swal("You have not ordered anything");
-                dialog.close();
-          
-        } else if ( meal.length != 0 && empname.length  != 0 && orderFrom.length  != 0 && orderDate.length != 0) {
-            
+        
+        if ( meal.length != 0 && empname.length  != 0 && orderFrom.length  != 0 && orderDate.length != 0 && price.length != 0 ) {
+
             $scope.items.push({
                 'meal': $scope.meal,
                 'Date' : orderDate,
@@ -27,7 +23,7 @@ $scope.items = [];
             swal({
                 title: "Good job!",
                 text: "Hey there " + $scope.empname + " you decided to order " + $scope.meal + " from " + $scope.orderFrom + 
-                " Awesome your order has been push in",
+                ", Awesome your order has been pushed in",
                 icon: "success",
               });
             dialog.close();
@@ -35,7 +31,21 @@ $scope.items = [];
             $scope.empname = "";
             $scope.orderFrom = "";
             $scope.price = "";
+    
         }
+        // If it happens that required does not work for some reasons - - This will kick in
+
+         else if ( ( meal.length == 0 || empname.length  == 0 || orderFrom.length  == 0 || price.length == 0 ) && orderDate.length != 0 )  { 
+            
+            swal(
+                'Oops...',
+                'Please fill in the form completely',
+                'error'
+            );
+            dialog.close();
+        }
+            
+
       } // close make order function
 
 

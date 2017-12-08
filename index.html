@@ -25,19 +25,19 @@
             <div class="mdl-dialog__content">
                <form ng-submit="makeOrder()">
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                     <input ng-model="meal" class="mdl-textfield__input" type="text" id="mealD sample3">
+                     <input ng-model="meal" class="mdl-textfield__input" type="text" id="mealD sample3" required>
                      <label class="mdl-textfield__label" for="sample3">Meal and Description</label>
                   </div>
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                     <input ng-model="empname" class="mdl-textfield__input" type="text" id="empN sample3">
+                     <input ng-model="empname" class="mdl-textfield__input" type="text" id="empN sample3" required>
                      <label class="mdl-textfield__label" for="sample3">Employee Name</label>
                   </div>
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                     <input ng-model="orderFrom" class="mdl-textfield__input" type="text" id="ordFrm sample3">
+                     <input ng-model="orderFrom" class="mdl-textfield__input" type="text" id="ordFrm sample3" required>
                      <label class="mdl-textfield__label" for="sample3">Order From</label>
                   </div>
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                     <input ng-model="price" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="prc sample4">
+                     <input ng-model="price" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="prc sample4" required>
                      <label class="mdl-textfield__label" for="sample4">Price</label>
                      <span class="mdl-textfield__error">Input is not a number!</span>
                   </div>
