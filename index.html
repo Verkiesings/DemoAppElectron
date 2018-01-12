@@ -56,10 +56,11 @@
             Our company offers to buy you lunch every monday....
          </div>
          <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="print()">
+            <a id="print" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
             These are the orders
             </a>
          </div>
+         <div id="editor"></div>
          <div class="mdl-card__menu">
             <button id="tt1" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
                <i class="material-icons"  id="show-dialog">add</i>
@@ -122,5 +123,23 @@
       
       <script src="js/material.min.js"></script>
       <script src="js/script.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+      <script>
+          // save a PDF file displaying orders made
+            var doc = new jsPDF();
+            var specialElementHandlers = {
+            '#editor': function (element, renderer) {
+                 return true;
+            }
+            };
+
+            $('#print').click(function () {   
+            doc.fromHTML($('.orderTable').html(), 15, 15, {
+                 'width': 170,
+                'elementHandlers': specialElementHandlers
+            });
+            doc.save('orders.pdf');
+            });
+      </script>
    </body>
 </html>
